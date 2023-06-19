@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from chess_crud.views import your_endpoint, participantes
+from chess_crud.views import participantes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
