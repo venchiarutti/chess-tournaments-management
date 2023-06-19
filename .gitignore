@@ -1,0 +1,6 @@
+crud-bd2/
+crud/.env
+crud/.idea/
+crud/crud/__pycache__/
+crud/chess_crud/__pycache__/
+crud/chess_crud/migrations/
