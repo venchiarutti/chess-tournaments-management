@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  # MySQL database service
+  db:
+    image: mysql:5.7
+    container_name: mysql-db-1
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - python-crud-bd2-data:/var/lib/mysql
+    env_file:
+      - ./.env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  python-crud-bd2-data:
