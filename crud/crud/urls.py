@@ -21,6 +21,5 @@ from chess_crud.views import your_endpoint, participantes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/teste', your_endpoint),
     path('api/participantes', participantes)
 ]

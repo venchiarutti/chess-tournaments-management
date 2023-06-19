@@ -4,10 +4,6 @@ from chess_crud.models import Participante
 # Create your views here.
 from django.http import JsonResponse
 
-def your_endpoint(request):
-    # Handle the request here
-    return JsonResponse('Hello, world!!!!!!!!!!!!!', safe=False)  # Return a response
-
 def participantes(request):
     participantes = Participante.objects.all()
     data = [{
