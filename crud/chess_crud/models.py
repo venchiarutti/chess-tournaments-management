@@ -16,7 +16,7 @@ class Hotel(models.Model):
 
 class Salao(models.Model):
     idSalao = models.AutoField(primary_key=True, db_column='IdSalao')
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, db_column='NomeHotel')
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, db_column='IdHotel')
     capacidade = models.IntegerField(db_column='Capacidade')
 
     class Meta:
@@ -43,14 +43,14 @@ class MeioComunicacaoSalao(models.Model):
 class Pais(models.Model):
     idPais = models.AutoField(primary_key=True, db_column='IdPais')
     numClubes = models.IntegerField(db_column='NumClubes')
-    nomePais = models.CharField(max_length=50, db_column='NomePais')
+    nome = models.CharField(max_length=50, db_column='NomePais')
     
     class Meta:
         managed = False
         db_table = 'pais'
 
     def __str__(self):
-        return self.nomePais
+        return self.nome
 
 
 class Participante(models.Model):

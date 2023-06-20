@@ -17,9 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from chess_crud.views import participantes
+from chess_crud.views import participantes, programacoes, jogo, jogos_quantidade_movimentos, paises_quantidade_participantes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/participantes', participantes)
+    path('api/participantes', participantes),
+    path('api/programacoes', programacoes),
+    path('api/jogo', jogo),
+    path('api/jogosqtdmovimentos', jogos_quantidade_movimentos),
+    path('api/paisesqtdparticipantes', paises_quantidade_participantes)
 ]
