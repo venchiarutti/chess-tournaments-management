@@ -6,37 +6,40 @@ import {
   CategoryScale,
   LinearScale,
   PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
 );
-import { chartJogoPorMovimentosMock } from "../../services/chessTournamentsService";
+import { getJogosQtdMovimentos } from "../../services/chessTournamentsService";
 
 export const ChartJogoPorMovimentos = () => {
   const [lsJogosQtdMovimentos, setLsJogosQtdMovimentos] = useState<any>(null);
 
   useEffect(() => {
     const assyncEffect = async () => {
-      setLsJogosQtdMovimentos(chartJogoPorMovimentosMock);
-
-      // await getJogosQtdMovimentos().then((result) => lsJogosQtdMovimentos(result.data));
+      await getJogosQtdMovimentos().then((result) => setLsJogosQtdMovimentos(result.data));
     };
     assyncEffect();
   }, []);
 
-  const labels = lsJogosQtdMovimentos?.map((item) => `Jogo ${item?.id}`);
+  //const labels = lsJogosQtdMovimentos?.map((item) => `Jogo ${item?.id}`);
+
+  const playersNames = lsJogosQtdMovimentos?.map((item) => item?.jogadores.map((jogador) => jogador.nome));
+  console.log(playersNames);
+
+  const labels = playersNames?.map((game) => `${game[0]} X ${game[1]}`);
 
   const data = {
     labels,
@@ -59,13 +62,13 @@ export const ChartJogoPorMovimentos = () => {
       },
       title: {
         display: false,
-        text: "Chart.js Line Chart",
+        text: "Chart.js Bar Chart",
       },
     },
   };
   return (
     <Card title="Jogos X Qtd. movimentos">
-      <Line options={options} data={data} />
+      <Bar options={options} data={data} />
     </Card>
   );
 };

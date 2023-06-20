@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField/TextField";
 import "./style.css";
 import Button from "@mui/material/Button/Button";
 import FindInPageTwoToneIcon from "@mui/icons-material/FindInPageTwoTone";
-import { getJogo, jogoMock } from "../../services/chessTournamentsService";
+import { getJogo } from "../../services/chessTournamentsService";
 
 export const CardJogo = () => {
   const [jogador, setJogador] = useState("");
@@ -20,16 +20,6 @@ export const CardJogo = () => {
   function getData(dia, mes, ano) {
     return `${dia}/${mes}/${ano}`;
   }
-
-  useEffect(() => {
-    const assyncEffect = async () => {
-      setLsJogos(jogoMock);
-      // await getJogo(hotel, jogador, arbitro).then((result) =>
-      //   setLsJogos(result?.data)
-      // );
-    };
-    assyncEffect();
-  }, []);
 
   return (
     <Card title="Jogos programados">
@@ -49,7 +39,14 @@ export const CardJogo = () => {
           variant="standard"
           onChange={(e) => setHotel(e.target.value)}
         />
-        <Button variant="contained" disabled={!jogador || !arbitro || !hotel}>
+        <Button 
+          variant="contained"
+          disabled={!jogador || !arbitro || !hotel}
+          onClick={async () => {
+            await getJogo(hotel, jogador, arbitro).then((result) =>
+            setLsJogos(result?.data));
+          }}
+        >
           Pesquisar
         </Button>
       </div>

@@ -62,7 +62,7 @@ def jogo(request):
     nome_participante = request.GET.get('nome_participante')
     nome_arbitro = request.GET.get('nome_arbitro')
 
-    jogo = Jogo.objects.filter(
+    jogos = Jogo.objects.filter(
         salao__hotel__nome=nome_hotel,
         joga__participante__nome=nome_participante,
         arbitro__nome=nome_arbitro
@@ -70,35 +70,39 @@ def jogo(request):
         'joga_set__participante', 'salao__hotel'
     ).select_related(
         'arbitro'
-    ).first()
+    ).all()
+
+    data = [
+        {
+            'id': jogo.idJogo,
+            'dia': jogo.dia,
+            'mes': jogo.mes,
+            'ano': jogo.ano,
+            'entradasVendidas': jogo.entradasVendidas,
+            'arbitro': {
+                'id': jogo.arbitro.idParticipante,
+                'nome': jogo.arbitro.nome,
+                'pais': jogo.arbitro.pais.nome
+            },
+            'salao': {
+                'id': jogo.salao.idSalao,
+                'nomeHotel': jogo.salao.hotel.nome,
+                'capacidadeLotacao': jogo.salao.capacidade
+            },
+            'jogadores': [
+                {
+                    'id': joga.participante.idParticipante,
+                    'nome': joga.participante.nome,
+                    'pais': joga.participante.pais.nome,
+                    'nivel': joga.nivel,
+                    'cor': joga.cor
+                }
+                for joga in jogo.joga_set.all()
+            ]
+        } for jogo in jogos
+    ]
     
-    return JsonResponse({
-        'id': jogo.idJogo,
-        'dia': jogo.dia,
-        'mes': jogo.mes,
-        'ano': jogo.ano,
-        'entradasVendidas': jogo.entradasVendidas,
-        'arbitro': {
-            'id': jogo.arbitro.idParticipante,
-            'nome': jogo.arbitro.nome,
-            'pais': jogo.arbitro.pais.nome
-        },
-        'salao': {
-            'id': jogo.salao.idSalao,
-            'nomeHotel': jogo.salao.hotel.nome,
-            'capacidadeLotacao': jogo.salao.capacidade
-        },
-        'jogadores': [
-            {
-                'id': joga.participante.idParticipante,
-                'nome': joga.participante.nome,
-                'pais': joga.participante.pais.nome,
-                'nivel': joga.nivel,
-                'cor': joga.cor
-            }
-            for joga in jogo.joga_set.all()
-        ]
-    }, safe=False)
+    return JsonResponse(data, safe=False)
 
 def jogos_quantidade_movimentos(request):
 

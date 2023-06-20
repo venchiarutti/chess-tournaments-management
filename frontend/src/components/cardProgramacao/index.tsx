@@ -6,10 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import {
-  getProgramacao,
-  programacaoMock,
-} from "../../services/chessTournamentsService";
+import { getProgramacao } from "../../services/chessTournamentsService";
 
 function getData(dia, mes, ano) {
   return `${dia}/${mes}/${ano}`;
@@ -18,13 +15,9 @@ function getData(dia, mes, ano) {
 export const CardProgramacao = () => {
   const [lsProgramacao, setLsProgramacao] = useState<any[]>([]);
 
-  console.log("asumc", lsProgramacao);
-
   useEffect(() => {
     const assyncEffect = async () => {
-      setLsProgramacao(programacaoMock);
-
-      // await getProgramacao().then((result) => setLsProgramacao(result.data));
+     await getProgramacao().then((result) => setLsProgramacao(result.data));
     };
     assyncEffect();
   }, []);
