@@ -1,0 +1,15 @@
+.card__body__inputs {
+  display: flex;
+  gap: 16px;
+}
+.card__body__empty__state {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  align-items: center;
+  gap: 16px;
+}
+.card__body__empty__state__text {
+  max-width: 256px;
+  font-size: 18px;
+}
