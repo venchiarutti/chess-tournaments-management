@@ -4,26 +4,26 @@ Pré-requisitos
 
 Antes de prosseguir, verifique se o seu sistema possui os seguintes requisitos:
 
-    Python instalado (versão 3.x)
-    Docker instalado
+Python instalado (versão 3.8)
+Docker instalado
 
 Clonando o repositório
 
 Primeiro, clone o repositório do GitHub em sua máquina local usando o seguinte comando:
 
-git clone https://github.com/venchiarutti/chess-tournaments-management.git
+    git clone https://github.com/venchiarutti/chess-tournaments-management.git
 
 Configurando o ambiente virtual Python
 
 Agora, vamos configurar um ambiente virtual Python para isolar as dependências do projeto. Siga as etapas abaixo:
 
-    Navegue para o diretório do projeto:
+Navegue para o diretório do projeto:
 
-cd chess-tournaments-management
+    cd chess-tournaments-management
 
 Crie um ambiente virtual:
 
-python3 -m venv venv
+    python3.8 -m venv venv
 
 Ative o ambiente virtual:
 
@@ -37,19 +37,19 @@ Ative o ambiente virtual:
 
 Instale as dependências do projeto:
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 Configurando e iniciando o Docker para o banco de dados
 
 Este projeto utiliza o Docker para executar o banco de dados. Siga as etapas abaixo para configurar e iniciar o Docker:
 
-    Certifique-se de ter o Docker instalado em sua máquina.
+Certifique-se de ter o Docker instalado em sua máquina.
 
 Dentro da pasta incial do repositório inicie o Docker Compose para construir e executar o ambiente:
 
     docker-compose up -d
 
-    Aguarde até que o Docker baixe as imagens e inicie o banco de dados.
+Aguarde até que o Docker baixe as imagens e inicie o banco de dados.
 
 Criando tabelas e inserindo dados
 
@@ -61,14 +61,14 @@ Executando o projeto
 
 Agora, você está pronto para executar o projeto e acessá-lo localmente. Siga as etapas abaixo:
 
-    Certifique-se de que o Docker e o ambiente virtual Python estejam ativos.
+Certifique-se de que o Docker e o ambiente virtual Python estejam ativos.
 
-    Execute o servidor de desenvolvimento Django da raiz do projeto:
+Execute o servidor de desenvolvimento Django da raiz do projeto:
 
-    python crud/manage.py runserver localhost:8000
+    python3.8 crud/manage.py runserver localhost:8000
 
 Abra um navegador da web e acesse o seguinte endereço:
 
     http://localhost:8000
 
-    Você deverá ver a página inicial do projeto.
+Você deverá ver a página inicial do projeto.

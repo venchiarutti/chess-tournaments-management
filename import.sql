@@ -140,14 +140,14 @@ VALUES
 ('Matsoud Plaza', 'Rua B, 456, Jardins', '+55 11 2345-6789'), 
 ('Ibis Consolação', 'Rua C, 789, Consolação', '+55 11 3456-7890');
 
-INSERT INTO salao(NomeHotel, Capacidade) 
+INSERT INTO salao(IdHotel, Capacidade) 
 VALUES 
-('Hilton', 50), 
-('Matsoud Plaza', 60), 
-('Ibis Consolação', 80), 
-('Hilton', 200), 
-('Matsoud Plaza', 150), 
-('Ibis Consolação', 20);
+(1, 50), 
+(2, 60), 
+(3, 80), 
+(1, 200), 
+(2, 150), 
+(3, 20);
 
 INSERT INTO meio_comunicacao_salao (IdSalao, MeioComunicacao) VALUES 
 (1,'televisao'), 
